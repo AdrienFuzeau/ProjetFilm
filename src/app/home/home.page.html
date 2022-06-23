@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <ion-button color="danger" (click)="onAfficheFavoris()"> Mes favoris <ion-icon name="heart-outline"></ion-icon></ion-button>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+    <ion-item>
+     <ion-input [(ngModel)]="nom" placeholder="Votre nom"></ion-input>
+    </ion-item>
+    <ion-item>
+     <ion-button color="primary" (click)="onAffiche()">
+      <ion-icon name="car-sport-outline"></ion-icon>
+     </ion-button>
+    </ion-item>     
+    <ion-item>
+      {{ info }}
+    </ion-item>   
+  </ion-list><br/><br/>
+  <ion-input [(ngModel)]="leProduit" placeholder="Rajouter un produit à la liste"></ion-input>
+  <ion-button color="primary" (click)="onAjouter()"> <ion-icon name="car-sport-outline"></ion-icon></ion-button>
+  <p>Liste des produits:</p>
+<ion-list *ngFor="let produit of produits, index as i">
+  <ion-item>
+    {{ produit }}
+    <ion-button (click)="onSupprimer(i, produit)">  <ion-icon name="trash-outline"></ion-icon></ion-button>
+  </ion-item>
+</ion-list>  
+<br/><br/><br/>
+<p>Liste des éléments supprimés</p>
+<ion-list *ngFor="let supprime of supprimes, index as i">
+  <ion-item>
+    {{ supprime }}
+  </ion-item>
+</ion-list> 
+<br/><br/><br/>
+
+<ion-input [(ngModel)]="film" placeholder="Film"></ion-input>
+  <ion-button 
+    size="large"
+    expand="block"
+    color="success" 
+    (click)="onRecherche()">
+    <ion-icon name="search-circle-outline"></ion-icon>
+  </ion-button>
+
+  <ion-card *ngFor="let film of listFilm, index as i"  style="display: inline-block;">
+    <ion-card-header>
+      <ion-card-subtitle>{{ film.anneeFilm }}</ion-card-subtitle>
+      <ion-card-title>{{ film.nomFilm }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>   
+      <ion-img [src]="film.image"></ion-img>
+      <div *ngIf="film.favoris == false"><ion-button color="danger"  (click)="onFavoris(i)"> <ion-icon name="heart-outline"></ion-icon></ion-button></div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
