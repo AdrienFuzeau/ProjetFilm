@@ -39,8 +39,22 @@ onRecherche(){
 
   onFavoris(index:number)
   {
-    this.listFilm[index].favoris = true;
-    this.listFavoris.push(this.listFilm[index]);
+    if(this.listFilm[index].favoris == false)
+    {
+      this.listFilm[index].favoris = true;
+      this.listFavoris.push(this.listFilm[index]);
+    }
+    else
+    {
+      this.listFilm[index].favoris = false;
+      this.listFavoris.splice(index, 1);
+    }
+  }
+
+  onAfficheFavoris()
+  {
+    this.listFilm = [];
+    this.listFilm = this.listFavoris;
   }
 
   onAffiche()
@@ -48,12 +62,6 @@ onRecherche(){
     console.log(this. nom);
     this.info = this.nom.toUpperCase();
     this.nom='';
-  }
-
-  onAfficheFavoris()
-  {
-    this.listFilm = [];
-    this.listFilm = this.listFavoris;
   }
 
   onAjouter()

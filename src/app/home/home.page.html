@@ -56,6 +56,7 @@
     <ion-card-content>   
       <ion-img [src]="film.image"></ion-img>
       <div *ngIf="film.favoris == false"><ion-button color="danger"  (click)="onFavoris(i)"> <ion-icon name="heart-outline"></ion-icon></ion-button></div>
+      <div *ngIf="film.favoris == true"><ion-button color="success"  (click)="onFavoris(i)"> <ion-icon name="heart-dislike-outline"></ion-icon></ion-button></div>
     </ion-card-content>
   </ion-card>
 </ion-content>
